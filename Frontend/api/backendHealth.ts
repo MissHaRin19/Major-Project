@@ -3,13 +3,9 @@ export async function checkBackendHealth(): Promise<boolean> {
     console.log("Checking backend health...");
 
     const response = await fetch(
-      "https://pseudohumanistic-jamee-subbronchially.ngrok-free.dev/health",
+      "/api/healthproxy",
       {
         method: "GET",
-        headers: {
-          "ngrok-skip-browser-warning": "true"
-        },
-        mode: "cors",
         cache: "no-store"
       }
     );
