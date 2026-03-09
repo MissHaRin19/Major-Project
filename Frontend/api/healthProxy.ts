@@ -1,12 +1,7 @@
 export async function GET() {
   try {
     const response = await fetch(
-      "https://pseudohumanistic-jamee-subbronchially.ngrok-free.dev/health",
-      {
-        headers: {
-          "ngrok-skip-browser-warning": "true"
-        }
-      }
+      "http://127.0.0.1:8000/health",
     );
 
     const data = await response.json();
