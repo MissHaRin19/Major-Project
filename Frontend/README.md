@@ -14,11 +14,10 @@ SecureBioSim provides a **safe research environment** to study cybersecurity thr
 
 # Project Execution
 
-Running this project requires **three terminals**:
+Running this project requires **two terminals**:
 
 1. **Frontend Simulation Server**
 2. **Backend AI Detection Server**
-3. **Ngrok Tunnel** (for exposing backend API)
 
 ---
 
@@ -107,78 +106,14 @@ Backend will run at:
 ```
 http://127.0.0.1:8000
 ```
-
----
-
-# Terminal 3 – Ngrok Tunnel
-
-Ngrok exposes the **local backend server to the internet**.
-
-This is useful when external services or remote environments need access to the API.
-
----
-
-# Install Ngrok
-
-## macOS
-
-```bash
-brew install ngrok
-```
-
-## Windows
-
-Download Ngrok from:
-
-```
-https://ngrok.com/download
-```
-
-Extract the file and run commands from the folder containing **ngrok.exe**.
-
----
-
-# Configure Ngrok
-
-Create an account at:
-
-```
-https://ngrok.com
-```
-
-Copy your **authentication token** and run:
-
-```bash
-ngrok config add-authtoken YOUR_AUTH_TOKEN
-```
-
----
-
-# Start the Tunnel
-
-Run:
-
-```bash
-ngrok http 8000
-```
-
-Ngrok will generate a **public URL** similar to:
-
-```
-https://xxxx.ngrok-free.app
-```
-
-This URL forwards requests to your **local backend server**.
-
 ---
 
 # Running the Simulation
 
 1. Start the **Frontend Server (Terminal 1)**.
 2. Start the **Backend Server (Terminal 2)**.
-3. Start the **Ngrok Tunnel (Terminal 3)**.
-4. Open the **frontend dashboard** in your browser.
-5. Launch **attack simulations** from the dashboard and observe system behavior.
+3. Open the **frontend dashboard** in your browser.
+4. Launch **attack simulations** from the dashboard and observe system behavior.
 
 The dashboard will display:
 
@@ -205,11 +140,6 @@ The dashboard will display:
 - FastAPI  
 - TensorFlow / Keras  
 - NumPy  
-
-## Networking
-
-- Ngrok  
-- REST API communication  
 
 ---
 
