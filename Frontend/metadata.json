@@ -1,0 +1,5 @@
+{
+  "name": "SecureBioSim: Pacemaker Bio-CPS Simulation",
+  "description": "A research-oriented cybersecurity simulation platform for pacemaker-based Bio-CPS devices. Features distinct Attacker and Defender dashboards for modeling attacks like Data Injection and DoS on real-time ECG telemetry.",
+  "requestFramePermissions": []
+}
