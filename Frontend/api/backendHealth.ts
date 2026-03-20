@@ -3,7 +3,7 @@ export async function checkBackendHealth(): Promise<boolean> {
     console.log("Checking backend health...");
 
     const response = await fetch(
-      "/api/healthproxy",
+      "/api/health",
       {
         method: "GET",
         cache: "no-store"
