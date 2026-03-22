@@ -41,7 +41,7 @@ npm run dev
 The frontend dashboard will start at:
 
 ```
-http://localhost:5173
+http://localhost:3000
 ```
 
 ---
@@ -64,7 +64,7 @@ npm run dev
 The frontend dashboard will run at:
 
 ```
-http://localhost:5173
+http://localhost:3000
 ```
 
 ---
