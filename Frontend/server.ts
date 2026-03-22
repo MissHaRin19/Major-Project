@@ -6,7 +6,7 @@ async function startServer() {
   const PORT = 3000;
 
   // API Proxy Route
-  app.get("/api/healthProxy", async (req, res) => {
+  app.get("/api/health", async (_req, res) => {
     try {
       const response = await fetch(
         "http://127.0.0.1:8000/health",
