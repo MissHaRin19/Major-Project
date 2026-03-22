@@ -28,6 +28,7 @@ Running this project requires **two terminals**:
 Run the following commands:
 
 ```bash
+cd frontend
 python3 -m venv venv
 source venv/bin/activate
 
@@ -50,6 +51,7 @@ http://localhost:5173
 Open **Command Prompt** or **PowerShell** and run:
 
 ```bash
+cd frontend
 python -m venv venv
 venv\Scripts\activate
 
@@ -74,6 +76,7 @@ This server runs the **FastAPI application and ML inference engine**.
 ## macOS / Linux
 
 ```bash
+cd backend
 python3 -m venv venv
 source venv/bin/activate
 
@@ -93,6 +96,7 @@ http://127.0.0.1:8000
 ## Windows
 
 ```bash
+cd backend
 python -m venv venv
 venv\Scripts\activate
 
