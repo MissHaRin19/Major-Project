@@ -1,29 +1,17 @@
 export async function checkBackendHealth(): Promise<boolean> {
   try {
-    console.log("Checking backend health...");
+    const response = await fetch('/api/health', {
+      method: 'GET',
+      cache: 'no-store'
+    });
 
-    const response = await fetch(
-      "/api/healthproxy",
-      {
-        method: "GET",
-        cache: "no-store"
-      }
-    );
+    if (!response.ok) {
+      return false;
+    }
 
-    console.log("Health response status:", response.status);
-
-    const text = await response.text();
-
-    console.log("Health raw response:", text);
-
-    const data = JSON.parse(text);
-
-    console.log("Parsed health data:", data);
-
+    const data = await response.json();
     return data.model_loaded === true;
-
-  } catch (error) {
-    console.error("Health check failed:", error);
+  } catch {
     return false;
   }
 }
