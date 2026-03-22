@@ -20,27 +20,26 @@ const DefenderDashboard: React.FC<DefenderProps> = ({
 }) => {
   const selectedPatient = patients.find(p => p.id === selectedId) || patients[0];
   const isAlert = selectedPatient.status === 'Attack Detected';
-  const timer = selectedPatient.mitigationTimeRemaining;
   const activeAttack = selectedPatient.identifiedAttack;
   const isMitigated = selectedPatient.mitigation === MitigationStatus.BLOCKED;
 
-  // Analysis stages mapped to the 10-second countdown
   const getStageStatus = (stage: number) => {
+    if (!isAlert && !isMitigated) return 'idle';
+
     if (isMitigated) return 'complete';
-    if (!isAlert || activeAttack === AttackType.NONE) return 'idle';
-    
-    if (stage === 1) { // Detection Phase
-      return timer > 8 ? 'processing' : 'complete';
+
+    if (selectedPatient.mitigation === MitigationStatus.IDENTIFIED) {
+      if (stage === 1) return 'complete';
+      if (stage === 2) return 'processing';
+      return 'pending';
     }
-    if (stage === 2) { // Identification Phase
-      if (timer > 7) return 'pending';
-      return timer > 3 ? 'processing' : 'complete';
+
+    if (selectedPatient.mitigation === MitigationStatus.MITIGATING) {
+      if (stage === 3) return 'processing';
+      return 'complete';
     }
-    if (stage === 3) { // Mitigation Phase
-      if (timer > 3) return 'pending';
-      return timer > 0 ? 'processing' : 'complete';
-    }
-    return 'idle';
+
+    return 'processing';
   };
 
   const renderPoint = (stage: number, title: string, description: string) => {
@@ -137,7 +136,7 @@ const DefenderDashboard: React.FC<DefenderProps> = ({
             <div className="col-span-12 lg:col-span-8 space-y-6">
               
               {/* Alert Notification */}
-              {isAlert && timer > 0 && (
+              {isAlert && (
                 <div className="bg-red-600 text-white p-6 rounded-2xl shadow-2xl border-2 border-red-500 flex items-center justify-between animate-[bounce_2s_infinite]">
                   <div className="flex items-center gap-5">
                     <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
@@ -145,12 +144,12 @@ const DefenderDashboard: React.FC<DefenderProps> = ({
                     </div>
                     <div>
                       <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-80 mb-1">Bio-IDS Response Triggered</div>
-                      <div className="text-3xl font-black italic uppercase tracking-tighter">Analyzing Payload...</div>
+                      <div className="text-3xl font-black italic uppercase tracking-tighter">Backend Response Active</div>
                     </div>
                   </div>
                   <div className="bg-black/30 px-6 py-4 rounded-2xl border border-white/20 text-center">
-                    <div className="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">Lockdown T-Minus</div>
-                    <div className="text-4xl font-mono font-black">{timer}s</div>
+                    <div className="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">Mitigation State</div>
+                    <div className="text-lg font-mono font-black">{selectedPatient.mitigation}</div>
                   </div>
                 </div>
               )}
